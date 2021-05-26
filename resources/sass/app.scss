@@ -1,0 +1,28 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+
+.ant-layout-footer {
+    padding: 14px 10px !important;
+    color: rgb(255 255 255)  !important;
+    font-size: 14px  !important;
+    background: #002140  !important;
+    border-left: 0.5px solid #676b6f  !important;
+}
+.ant-menu-item .anticon, .ant-menu-submenu-title .anticon {
+    font-size: 20px !important;
+}
+.anticon {
+    vertical-align: 0 !important;
+}
+#components-layout-demo-custom-trigger .trigger {
+    line-height: 0 !important;
+    position: relative;
+    bottom: 5px;
+}
