@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use function PHPUnit\Framework\at;
 
 class LoginController extends Controller
 {
@@ -36,5 +39,27 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function login(Request $request)
+    {
+        $email =  $request->email;
+        $password =  $request->password;
+        $data = ['email' => $email, 'password' => $password];
+
+        $user=  User::where('email' , $email)->first();
+
+        if ($user){
+            $attempt = auth()->attempt($data);
+                if (!$attempt) return ['error' => ['password' => 'Password Incorrect !!']];
+        }
+        else{
+            return ['error' => ['email' => 'User Introuvable !!']];
+        }
+    }
+
+    public function logout(Request $request)
+    {
+       return auth()->logout();
     }
 }

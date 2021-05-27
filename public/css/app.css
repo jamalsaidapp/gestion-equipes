@@ -10023,3 +10023,8 @@ h3 {
   position: relative;
   bottom: 5px;
 }
+
+.center_login {
+  margin: auto;
+  padding: 140px 0;
+}

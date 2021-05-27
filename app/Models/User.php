@@ -22,6 +22,11 @@ class User extends Authenticatable
         'password',
     ];
 
+    public function finbyemail($email)
+    {
+        return User::where('email' , $email)->first();
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *
