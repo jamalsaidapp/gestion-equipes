@@ -10,7 +10,9 @@ Route::get('/', function (){
             return view('layouts.app');
                 return redirect('/login');
 });
-
+Route::get('getuser',function (){
+    return auth()->user();
+});
 //Auth::routes();
 Route::view('/login', 'layouts.app');
 Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login');

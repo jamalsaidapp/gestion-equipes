@@ -26,7 +26,7 @@
 <body>
     <div class="h-100" id="app" style="background: rgb(236, 236, 236);">
         @auth
-            <Layouts/>
+            <Layouts user:/>
         @else
             <div class="center_login">
                 <Login/>

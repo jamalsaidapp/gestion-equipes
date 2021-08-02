@@ -1,11 +1,27 @@
 <template>
     <!--     HEADER    -->
     <a-layout-header style="background: #fff; padding: 0 ; height: 55px;">
-        <a-icon  class="trigger" :type="collapsed ? 'menu-unfold' : 'menu-fold'" @click="handleCollapsed"/>
+        <a-icon :type="collapsed ? 'menu-unfold' : 'menu-fold'" class="trigger" @click="handleCollapsed"/>
 
-        <div class="float-right pr-2">
-            <a-avatar class="mb-3" size="small" icon="user" />
-            <span class="mb-3">{{$user.name}}</span>
+        <div class="auth-user h-100 float-right pr-2" style="line-height: 30px">
+            <a-avatar icon="user" size="large"/>
+            <a-dropdown :trigger="['click']">
+                <a class="text-dark ant-dropdown-link" @click="e => e.preventDefault()" style="line-height: 50px;">
+<!--                    {{user[1].name}}-->
+                    <a-icon type="down" />
+                </a>
+                <a-menu slot="overlay" class="FixDrop" >
+                    <a-menu-item>
+                        <a href="#">1st menu item</a>
+                    </a-menu-item>
+                    <a-menu-item>
+                        <a href="#">2nd menu item</a>
+                    </a-menu-item>
+                    <a-menu-item>
+                        <a href="#">3rd menu item</a>
+                    </a-menu-item>
+                </a-menu>
+            </a-dropdown>
         </div>
     </a-layout-header>
     <!--     HEADER      -->
@@ -13,24 +29,39 @@
 
 <script>
 export default {
-name: "NavBar",
-    props:{
-        collapsed :{
+    name: "NavBar",
+    data() {
+        return {
+        }
+    },
+    computed:{
+        user(){
+            let name = 0
+            return this.$store.state.user[name];
+        }
+    },
+    props: {
+        collapsed: {
             type: Boolean,
-            default : false
+            default: false
         }
     },
-    methods:{
-         handleCollapsed(){
-             this.$root.$emit("collapse-handle");
-        }
+    methods: {
+        handleCollapsed() {
+            this.$root.$emit("collapse-handle");
+        },
+
     },
-    mounted(){
+    beforeMount() {
+        let name = 0
+        console.log('From Nav', this.user)
     }
 
 }
 </script>
 
 <style scoped>
-
+.FixDrop{
+    top: 20px !important;
+}
 </style>
